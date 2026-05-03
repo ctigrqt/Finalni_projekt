@@ -39,7 +39,9 @@ public:
         cout << "Mana: " << mana << "\n";
         cout << "Zlato: " << zlato << "\n";
         cout << "Uroven : " << uroven << "\n";
-        cout << "\n=== POSTAVA ===\n";
+        cout << "Zkusenosti : " << zkusenosti << "\n";
+        cout << "Cennosti : " << cennosti << "\n"
+             << "\n=== POSTAVA ===\n";
     }
 };
 class Hra {
@@ -57,7 +59,7 @@ public:
             cout << "\nVyber si tridu: \n";
             cout << "1) Rybar (mix) \n";
             cout << "2) Lovec (dobry health staty) \n";
-            cout << "3) nizsi slechtic (hodne zlata) \n";
+            cout << "3) Nizsi slechtic (hodne zlata) \n";
             cout << "Volba: ";
             cin >> volba;
 
@@ -76,7 +78,7 @@ public:
                 hrac.zlato = 5;
             }
             else if (volba == 3) {
-                hrac.trida = "nizsi slechtic";
+                hrac.trida = "Nizsi slechtic";
                 hrac.zivoty = 4;
                 hrac.maxZivoty = 4;
                 hrac.utok = 5;
@@ -94,19 +96,22 @@ public:
     }
 
     void start() {
+
         cout << "=== prologue ===\n"
-                "tato hra byla zalozena na pribehu z knih george rr martina jmenem feast of skane\n"
-                "je to jenom interpretace prastare povidky samotny pribeh udalosti nezname \n"
+                "Tato hra byla zalozena na pribehu z knih George R.R. Martina jmenem Feast of Skane.\n"
+                "Je to jenom interpretace stare povidky, samotny prubeh udalosti je neznamy.\n"
                 "================================================================================\n";
 
         vyberTridu();
         hrac.zobrazStatistiky();
 
-        cout <<"================"<<endl;
 
-        cout <<"jmenujes se "<< hrac.jmeno; cout << " ""a pochazis z ostrova skane v kralostvi severu tvuj otec byl" " "<<hrac.trida; cout << " ""stejne jako ty\n"
-                "avsak vaseho otce jste nedavno pochovali potom co se priotravil zkazenym masem a vzala ho horecka\n"
-                "je ti jenom 12 let ale jako nejstrasi syn musis podstoupit vycvikem pred divokymi najezdniky z dalekeho severu a bajnych the others\n";
+
+        cout <<"Jmenujes se "<< hrac.jmeno; cout << " ""a pochazis z ostrova Skane v Kralostvi severu.\n";
+         cout <<"Tvuj otec byl" " "<<hrac.trida; cout << ", ""stejne jako ty.\n"
+                "Avsak vaseho otce jste nedavno pochovali pote, co se priotravil zkazenym masem a vzala ho horecka.\n"
+                "Je ti jenom 12 let, ale jako nejstrasi syn musis podstoupit vycvikem pred divokymi najezdniky z dalekeho severu\n"
+                "a bajnych the others.\n";
 
         cout <<"===================================================MAPA OSTROVA===================================================\n";
         cout <<
@@ -133,22 +138,22 @@ public:
 
 
         cout <<"===================================================MAPA OSTROVA===================================================\n";
-        cout << "rano te zbudi matka ze se pujdete pomodlit k weirwood stromu\n"
-                " pac na delsi dobu odejdes na vycvik a vratis ze se az za dve zimy\n";
+        cout << "Rano te zbudi tva matka, ze se pujdete pomodlit k weirwood stromu,\n"
+                "protoze tvuj nastup na vojensky vycvik se blizi a vratis se az za tri zimy.\n";
 
 
 
         cout << "=== kapitola 1 - Odchod ===\n"
 
-             << "nez se vydas na cestu muzes si ukrast jednu vec:\n";
+             << "Predtim nez se vydas na cestu, muzes ukrast jednu vec: \n";
              bool potvrzeno = false;
 
              while (!potvrzeno) {
 
-            cout <<" 1) uspory mladsiho bratra (+2 zlata) \n";
-            cout <<" 2) sousedovu sekeru (+1 utok) \n";
-            cout <<" 3) nic \n";
-            cout <<"volba: "<<endl;
+            cout <<" 1) Uspory mladsiho bratra (+2 zlata) \n";
+            cout <<" 2) Sousedovu sekeru (+1 utok) \n";
+            cout <<" 3) Nic \n";
+            cout <<"Volba: "<<endl;
             int volba;
             cin >> volba;
 
@@ -156,21 +161,21 @@ public:
                 case 1:
 
                 hrac.zlato += 2;
-                cout<<"doufej ze te nikdo nevidel"<<endl;
+                cout<<"Doufej, ze te nikdo nevidel."<<endl;
                 potvrzeno = true;
                 break;
 
                 case 2:
 
                 hrac.utok += 1;
-               cout<<"ten si drevo dlouho neposeka"<<endl;
+               cout<<"Ten si drevo dlouho neposeka."<<endl;
                 potvrzeno = true;
                 break;
 
                 case 3:
 
                 hrac.mana +=1;
-                cout<<"stari bohove se odmenili za tvoji cest(+1 mana)"<<endl;
+                cout<<"Stari bohove se odmenili za tvoji cest.(+1 mana)"<<endl;
                 potvrzeno = true;
                 break;
                 default:
@@ -183,18 +188,18 @@ public:
             }
 hrac.zobrazStatistiky();
 
-cout<<"s matkou opustite vesnici behem toho co zbytek domacnosti jeste spi\n"
-       "po ceste vidis mnoho havranu ktere nad vami krouzi\n"
-       "co udelas?\n";
+cout<<"S matkou opustite vesnici, behem toho co zbytek visky jeste spi.\n"
+       "Po ceste vidis mnoho havranu, kteri nad vami krouzi.\n"
+       "Co udelas?\n";
 
 
             potvrzeno = false;
              while (!potvrzeno) {
 
-            cout <<" 1) zacnes machat rukama jako divoch \n";
-            cout <<" 2) hodis po nich kamen\n";
-            cout <<" 3) nic \n";
-            cout <<"volba: "<<endl;
+            cout <<" 1) Zacnes machat rukama jako divoch. \n";
+            cout <<" 2) Hodis po nich kamen.\n";
+            cout <<" 3) Nic. \n";
+            cout <<"Volba: "<<endl;
             int volba;
             cin >> volba;
 
@@ -202,22 +207,22 @@ cout<<"s matkou opustite vesnici behem toho co zbytek domacnosti jeste spi\n"
                 case 1:
 
                 hrac.cennosti += 1;
-                cout<<"jeden z havranu se te lekl a vypadlo z neho pirko(+1 cennost)"<<endl;
+                cout<<"Jeden z havranu se te lekl a vypadlo z neho pirko.(+1 cennost)"<<endl;
                 potvrzeno = true;
                 break;
 
                 case 2:
 
                 hrac.zivoty -= 1;
-               cout<<"matka ti dala vychovny pohlavek (-1 zivot)"<<endl;
+               cout<<"Matka ti dala vychovny pohlavek.(-1 zivot)"<<endl;
                 potvrzeno = true;
                 break;
 
                 case 3:
 
                 hrac.uroven +=1;
-                cout<<"potichu si sledoval jak se chovaji\n"
-                "a pochopil si zaklady jeji pohybove reci\n";
+                cout<<"Potichu jsi sledoval, jak se chovaji,\n"
+                "a pochopil jsi zaklady jejich pohybove reci.\n";
                 potvrzeno = true;
                 break;
                 default:
@@ -230,8 +235,64 @@ cout<<"s matkou opustite vesnici behem toho co zbytek domacnosti jeste spi\n"
             }
 hrac.zobrazStatistiky();
 
-    }
-};
+
+
+    potvrzeno = false;
+    while (!potvrzeno) {
+
+ cout<<"Blizite se k posvatnemu weirwood stromu. \n"
+       "Za co se pomodlite?\n"
+       "1) Posmrtny zivot vaseho zesnuleho otce.\n"
+       "2) Aby tvuj vojensky vycvik sel hladce.\n"
+       "3) Za dobrou urodu skanenu.\n"
+       "4) Za bezpecnost skanenu pred divokymi severany.\n";
+       cout << "volba: "<<endl;
+       int volba;
+       cin >> volba;
+
+       switch(volba){
+
+        case 1:
+            cout<<" \n";
+        cout<<"Slysite slaby hlasek ve vetru, ktery vas vede dal ke korenum stromu hluboko do lesa."<<endl;
+        potvrzeno = true;
+        break;
+
+        case 2:
+            cout<<" \n";
+        cout<<"Pri skloneni vam vypadne dyka z pochvy a skutali se dolu z kopce hluboko do lesa."<<endl;
+        potvrzeno=true;
+        break;
+
+        case 3:
+            cout<<" \n";
+        cout<<"Na hranici lesa muzete videt velke boruvci\n";
+        potvrzeno=true;
+        break;
+
+        case 4:
+            cout<<" \n";
+        cout<<"slysite hlasite otresy a vidite velike humanoidni stopy."<<endl;
+        potvrzeno=true;
+        break;
+
+        default:
+            cout<<" "<<endl;
+            break;
+
+                }
+            }
+    cout<<"  "<<endl;
+   cout<<"Postupujes dal do hlubokeho lesa. Cim vice casu co tu stravis, tim hur ti je.\n"
+   "Dojde ti, ze ses ztratil a neznas cestu zpet. Hlava se ti mota vic a vic,\n"
+   "dokud neodpadnes do hlubokeho spanku.\n";
+
+
+
+
+
+        }
+    };
 
 int main() {
     Hra hra;
