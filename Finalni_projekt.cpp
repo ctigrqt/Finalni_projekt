@@ -17,6 +17,7 @@ public:
     int potrebaZkusenosti;
     int utok;
     int cennosti;
+    int reputace;
 
     Hrac() {
         zivoty = 0;
@@ -28,6 +29,7 @@ public:
         potrebaZkusenosti = 5;
         utok = 0;
         cennosti = 0;
+        reputace = 0;
     }
 
     void zobrazStatistiky() {
@@ -40,8 +42,9 @@ public:
         cout << "Zlato: " << zlato << "\n";
         cout << "Uroven : " << uroven << "\n";
         cout << "Zkusenosti : " << zkusenosti << "\n";
-        cout << "Cennosti : " << cennosti << "\n"
-             << "\n=== POSTAVA ===\n";
+        cout << "Cennosti : " << cennosti << "\n";
+        cout << "Reputace : " << reputace << "\n";
+             cout<< "\n=== POSTAVA ===\n";
     }
 };
 class Hra {
@@ -69,6 +72,7 @@ public:
                 hrac.maxZivoty = 5;
                 hrac.utok = 3;
                 hrac.zlato = 10;
+                hrac.reputace = 4;
             }
             else if (volba == 2) {
                 hrac.trida = "Lovec";
@@ -76,6 +80,7 @@ public:
                 hrac.maxZivoty = 6;
                 hrac.utok = 3;
                 hrac.zlato = 5;
+                hrac.reputace = 6;
             }
             else if (volba == 3) {
                 hrac.trida = "Nizsi slechtic";
@@ -83,6 +88,7 @@ public:
                 hrac.maxZivoty = 4;
                 hrac.utok = 5;
                 hrac.zlato = 12;
+                hrac.reputace = 8;
             }
             else {
                 cout << "Neplatna volba. \n";
@@ -289,10 +295,119 @@ hrac.zobrazStatistiky();
 
 
 
+    cout<<"Probudis se ve velike nore, vzduch pachne hnilobou.\n"
+    "Jak pokracujes dale, tim se pach zvetsuje...\n"
+    "Na rozcesti vidis 3 havrany, jsou agresivni a vyleti proti tobe.\n"
+    "Co udelas?\n"<<endl;
+
+    int havrani = 3;
+    int havrani_zivoty = 6;
+
+    while (havrani > 0){
+       if (hrac.zivoty <= 1) {
+
+        cout << "\nJsi prilis zraneny a utikas hloubeji do nory.\n";
+        break;
+    }
+    cout<<"============="<<endl;
+    cout<<" Havrani: "<<havrani<<endl;
+    cout<<" Zivoty havranu: "<<havrani_zivoty<<endl;
+    hrac.zobrazStatistiky();
+
+    cout<<"1) Zacnes machat rukama (light utok)\n"
+    "2) Hodis po nich kameny co jsi nasel v nore (heavy utok)\n"
+    "3) Zacnes vyvolavat stare bohy v bitevnim pokriku (-1 mana)";
+    cout<<"Volba :\n";
+    int volba;
+    cin >> volba;
+
+    switch(volba){
+case 1:
+
+     cout << "\nZacal jsi divoce machat rukama.\n";
+     havrani_zivoty -= 1;
+     if (rand() % 2 == 0) {
+     cout << "Havrani se netrefili.\n";
+                    }
+     else {
+        hrac.zivoty--;
+     cout << "Havrani te ozobali. (-1 zivot)\n";
+                    }
+     break;
 
 
+case 2:
+
+    cout << "\nHodil jsi po havranech par kamenu.\n";
+    havrani_zivoty -= 3;
+    hrac.zivoty--;
+    cout << "Havrani te pri utoku poskrabali. (-1 zivot)\n";
+
+    break;
+
+case 3:
+
+    if (hrac.mana >= 1) {
+    hrac.mana--;
+    havrani = 0;
+
+cout << "Zacal jsi kricet modlitbu.\n";
+ "Havrani se v panice rozleteli proti stenam nory\n"
+ "a umreli pri srazeni\n";
+                }
+else {
+cout << "Nemas dostatek many.\n";
+            }
+break;
+
+default:
+cout << "Neplatna volba.\n";
+
+break;
+
+
+          }
+if (havrani_zivoty <= 0) {
+
+        havrani = 0;
+
+        cout << "\nPosledni havran padl mrtvy k zemi.\n";
+        cout <<"Aspon si muzes vzit jejich pirka jako cennosti."<<endl;
+        hrac.zkusenosti += 2;
+        hrac.cennosti += 1;
+
+    }
+hrac.zobrazStatistiky();
+         }
+         potvrzeno = false;
+             while (!potvrzeno) {
+         cout<<"Pokracujes dal do nory.\n"
+         "Korenu pribyva a pribyva, najdes krizovatku a uprosted ni sedi 3 okky havran.\n"
+         "Po chvilce trapne tichosti havran na tebe promluvi.\n"
+         "Rekne ti, ze te sem prived sam osud, ze musis zachranit Skane.\n"
+         "Budes mu verit?\n";
+         cout<<"1) Ano"<<endl;
+         cout<<"2) Ne"<<endl;
+
+        cout << "Volba: "<<endl;
+        int volba;
+        cin >> volba;
+
+        switch(volba){
+case 1:
+    cout<<"Spravne premyslis ale i tak tve myslenky jsou temne (+reputace)\n"
+    "moje jmeno je cold hands\n";
+    hrac.reputace += 1;
+case 2:
+    cout<<"Hlupacku slysim tvoje myslenky budouci i minule(-reputace)\n"
+    "Ale i tak jsem ti poveren pomoct.\n"
+    "Moje jmeno je cold hands.\n";
+        hrac.reputace--;
+
+          }
+         }
         }
-    };
+       };
 
 int main() {
     Hra hra;
