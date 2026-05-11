@@ -218,9 +218,9 @@ cout<<"S matkou opustite vesnici, behem toho co zbytek visky jeste spi.\n"
                 break;
 
                 case 2:
-
+                hrac.reputace --;
                 hrac.zivoty -= 1;
-               cout<<"Matka ti dala vychovny pohlavek.(-1 zivot)"<<endl;
+               cout<<"Matka ti dala vychovny pohlavek.(-1 zivot & -1 reputace)"<<endl;
                 potvrzeno = true;
                 break;
 
@@ -315,9 +315,9 @@ hrac.zobrazStatistiky();
     hrac.zobrazStatistiky();
 
     cout<<"1) Zacnes machat rukama (light utok)\n"
-    "2) Hodis po nich kameny co jsi nasel v nore (heavy utok)\n"
-    "3) Zacnes vyvolavat stare bohy v bitevnim pokriku (-1 mana)";
-    cout<<"Volba :\n";
+    "2) Hodis po nich kameny co jsi nasel v nore (heavy utok)\n";
+    cout<<"3) Zacnes vyvolavat stare bohy v bitevnim pokriku (-1 mana)"<<endl;
+    cout<<"Volba :"<<endl;
     int volba;
     cin >> volba;
 
@@ -351,7 +351,7 @@ case 3:
     hrac.mana--;
     havrani = 0;
 
-cout << "Zacal jsi kricet modlitbu.\n";
+cout << "Zacal jsi kricet modlitbu.\n"
  "Havrani se v panice rozleteli proti stenam nory\n"
  "a umreli pri srazeni\n";
                 }
@@ -374,7 +374,8 @@ if (havrani_zivoty <= 0) {
         cout << "\nPosledni havran padl mrtvy k zemi.\n";
         cout <<"Aspon si muzes vzit jejich pirka jako cennosti."<<endl;
         hrac.zkusenosti += 2;
-        hrac.cennosti += 1;
+        hrac.cennosti += 3;
+        hrac.uroven += 1;
 
     }
 hrac.zobrazStatistiky();
@@ -396,16 +397,122 @@ hrac.zobrazStatistiky();
         switch(volba){
 case 1:
     cout<<"Spravne premyslis ale i tak tve myslenky jsou temne (+reputace)\n"
-    "moje jmeno je cold hands\n";
+    "moje jmeno je Cold hands\n";
     hrac.reputace += 1;
+    potvrzeno=true;
+    break;
 case 2:
     cout<<"Hlupacku slysim tvoje myslenky budouci i minule(-reputace)\n"
     "Ale i tak jsem ti poveren pomoct.\n"
-    "Moje jmeno je cold hands.\n";
-        hrac.reputace--;
-
+    "Moje jmeno je Cold hands.\n";
+    hrac.reputace--;
+    potvrzeno=true;
+    break;
+default:
+cout<<"Neplatna volba."<<endl;
+break;
           }
          }
+cout<<"Prosim nasleduj me.\n"
+    "    \n"
+    "======Jak sestupujete hloubeji do nory havran zacne vysvetlovat okolnosti======\n"
+    "              Tvrdi, ze jsi jediny, kdo dokaze zachranit Skane.\n"
+    "     \n";
+    cout<<"TY: Ja? Vzdyt jsem jeste dite a predkym bych ho mel vubec zachranovat."<<endl;
+    cout<<"TY: Pred najezdniky ze severu zdi?"<<endl;
+    cout<<"COLDHANDS: Musis zachranit Skane, to snad chces udelat?"<<endl;
+    cout<<"TY: Jsem jenom "<< hrac.trida; cout <<",ale pro Skane udelam cokoliv"<<endl;
+    cout<<"COLDHANDS: Tohle neni jen pro Skane. Budete to stat hodne mozna na to zapones,\n"
+    "ale jednoho dne pride den, kdy si vzpomenes na to kolik te to stalo\n";
+    cout<<"TY: Kam to vubec jdeme...?"<<endl;
+    cout<<"   "<<endl;
+    cout<<"Havran na jednou zmizi a zpoza rohu se vynori vysoky postarsi muz.\n"
+    "Ma velmi bledou plet a cerne umrzle ruce\n";
+
+
+
+
+        potvrzeno = false;
+        while (!potvrzeno) {
+
+        cout<<"-------------------------"<<endl;
+        cout<<"TY: Kdo jsi?!!\n"
+        "Snad jsem rikal, ze jsem Coldhands.\n";
+        cout<<"1) Ty jsi mrtvej?\n"
+            "2) Kdo kurva jses.\n";
+       cout << "volba: "<<endl;
+       int volba;
+       cin >> volba;
+        cout<<"--------"<<endl;
+       switch(volba){
+
+        case 1:
+            cout<<" \n";
+        cout<<"Byval jsem, ted jsem neco mezi."<<endl;
+        potvrzeno = true;
+        break;
+
+        case 2:
+            cout<<" \n";
+        cout<<"Mrtvi me neberou mezi sebe a zivi se modli, abych prisel pozde"<<endl;
+        potvrzeno=true;
+        break;
+
+        default:
+            cout<<" "<<endl;
+            break;
+
+                }
+            }
+            cout<<"-----------------------------------"<<endl;
+cout<<"dorazite ke dnu nory.\n"
+"Citis odporny zapach, ktery pochazi z mista, kde se potkavaji koreny.\n";
+cout<<"   "<<endl;
+cout<<"Vidis stareho pana, ktery je prorostly koreny stromu.\n"
+"Napadne te utect, ale Coldhands te chyti a presune te blize ke starci.\n";
+cout<<"  "<<endl;
+cout<<"GREENSEER: Neboj se "<<hrac.jmeno; cout<<" i ja se stydim za svuj stav.\n"
+"GREENSEER: Colhands ti rikal o tvem poslani?.\n"
+"TY: Ano ale zminil, ze me to bude stat draze, co tim myslel?\n"
+"GREENSEER: Chlapce to ti nemohu rici, bojim se, ze bys pak nesouhlasil.\n"
+"Bez a varuj Skane, potom pluj na Skagos a vypros mistniho pana o pomoc.\n"
+"Ma mocne lode, ktere potrebujete.\n"
+"  \n"
+"Jestli mas nejake cennosti, muzeme spolu udelat obchod.\n";
+
+
+potvrzeno = false;
+while (!potvrzeno) {
+if (hrac.mana >= 0){
+    int volba;
+    cout<<"Vidim, ze nemas zadnou naklonost bohu, ze jsi bez many"<<endl;
+    cout<<"Za tvoje je zkusenosti jest manu muzu vymenit."<<endl;
+    cout<<"Volba?: (1/2)"<<endl;
+    cin>>volba;
+    if (volba == 1) {
+        cout<<"Nuze dobra"<<endl;
+        if(hrac.zkusenosti < 1){
+        cout<<"Nemas zadne zkusenosti";
+        }
+        if(hrac.zkusenosti >= 1){
+        hrac.zkusenosti --;
+        hrac.mana +=1;
+        cout<<"Obdrzel jsi manu"<<endl;
+        }
+        potvrzeno = true;
+    }
+else if (volba == 2) {
+
+            cout << "Jak si prejes." << endl;
+            potvrzeno = true;
+        }
+        else {
+        cout << "Neplatna volba. Zadej pouze 1 nebo 2." << endl;
+        }
+
+}
+
+}
         }
        };
 
