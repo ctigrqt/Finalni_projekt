@@ -354,6 +354,10 @@ case 3:
 cout << "Zacal jsi kricet modlitbu.\n"
  "Havrani se v panice rozleteli proti stenam nory\n"
  "a umreli pri srazeni\n";
+ hrac.zkusenosti += 2;
+        hrac.cennosti += 3;
+        hrac.uroven += 1;
+
                 }
 else {
 cout << "Nemas dostatek many.\n";
@@ -513,6 +517,80 @@ else if (volba == 2) {
 }
 
 }
+cout<<" "<<endl;
+  cout<<"Nyni muzes ziskat.\n";
+  potvrzeno = false;
+
+while (!potvrzeno) {
+
+    cout << "\n===== OBCHOD S GREENSEEREM =====\n";
+    cout << "Tvoje cennosti: " << hrac.cennosti << "\n";
+    cout << "1) 1 cennost -> +3 zlata\n";
+    cout << "2) 2 cennosti -> +1 utok\n";
+    cout << "3) 1 cennost -> +1 reputace\n";
+    cout << "4) Odejit\n";
+    cout << "Volba: ";
+
+    int volba;
+    cin >> volba;
+
+    switch(volba) {
+
+    case 1:
+    if (hrac.cennosti >= 1) {
+    hrac.cennosti -= 1;
+    hrac.zlato += 3;
+
+    cout << "Greenseer ti predal stare mince. (+3 zlata)\n";
+    }
+    else {
+    cout << "Nemas dostatek cennosti.\n";
+    }
+
+    break;
+
+    case 2:
+    if (hrac.cennosti >= 1) {
+    hrac.cennosti -= 1;
+    hrac.utok += 1;
+
+    cout << "Greenseer ti pozehnal silou korenu. (+1 utok)\n";
+    }
+    else {
+    cout << "Potrebujes alespon 2 cennosti.\n";
+    }
+
+    break;
+
+    case 3:
+    if (hrac.cennosti >= 1) {
+    hrac.cennosti -= 1;
+    hrac.reputace += 1;
+
+    cout << "Tvoje jmeno bude mezi lidmi znamo. (+1 reputace)\n";
+}
+    else {
+    cout << "Nemas dostatek cennosti.\n";
+}
+    break;
+
+    case 4:
+    cout << "Greenseer prikyvl a obchod skoncil.\n";
+    potvrzeno = true;
+
+    break;
+
+    default:
+    cout << "Neplatna volba.\n";
+
+    break;
+}
+    hrac.zobrazStatistiky();
+}
+
+
+
+
         }
        };
 
