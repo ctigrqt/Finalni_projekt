@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <ctime>
 
 using namespace std;
 
@@ -557,7 +558,7 @@ while (!potvrzeno) {
     cout << "Greenseer ti pozehnal silou korenu. (+1 utok)\n";
     }
     else {
-    cout << "Potrebujes alespon 2 cennosti.\n";
+    cout << "Potrebujes alespon jednu cennost.\n";
     }
 
     break;
@@ -587,7 +588,17 @@ while (!potvrzeno) {
 }
     hrac.zobrazStatistiky();
 }
-
+cout<<" "<<endl;
+cout<<"Vylezes z nory a obeznamis matce tvoji situaci, ale neveri ti.\n"
+"Zacne nadavat, ze se jen snazis vyhnout vycviku a ze je z tebe zklamana. (-reputace)\n"
+"Kdyz se otoci ani se neohlidnes a vezmes nohy na ramena.\n"
+"Zacnes utikat smerem Driftwood hall na ostrov Skagos\n";
+cout<<" "<<endl;
+hrac.reputace -=1;
+cout<<"KAPITOPLA 2 - VLK V ROUSE BERANCIM"<<endl;
+cout<<" "<<endl;
+cout<<"Po nekolika tezkych dnech cestovani si konecne muzes odpocinout.\n"
+"Ale mas hlad a v blizkosti slysis kance.\n";
 
 
 
@@ -597,7 +608,7 @@ while (!potvrzeno) {
 int main() {
     Hra hra;
     hra.start();
-
+    srand(time(0));
 
     return 0;
 }
