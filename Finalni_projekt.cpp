@@ -598,17 +598,140 @@ hrac.reputace -=1;
 cout<<"KAPITOPLA 2 - VLK V ROUSE BERANCIM"<<endl;
 cout<<" "<<endl;
 cout<<"Po nekolika tezkych dnech cestovani si konecne muzes odpocinout.\n"
-"Ale mas hlad a v blizkosti slysis kance.\n";
+"Ale mas hlad a v blizkosti slysis kance.\n"
+"Rozhodl ses odpocinout a regenerovat sily\.n";
+hrac.zivoty = hrac.maxZivoty;
+cout << "Po odpocinku ses citil znovu plny sil.\n";
+cout<<"kanci zvuky se zvetsuji a zvetsuji nez se kanec vynori z krovi"<<endl;
 
 
+cout << "\n====== SOUBOJ S KANCEM ======\n";
+int kanec_zivoty = 5;
+bool kanecNazivu = true;
+bool leckaPouzita = false;
+int puvodniUtok = hrac.utok;
 
+while (kanecNazivu && hrac.zivoty > 0) {
+cout << "\n=========================\n";
+cout << "KANEC HP: " << kanec_zivoty << endl;
+
+hrac.zobrazStatistiky();
+
+cout << "\nCo udelas?\n";
+    cout << "1) Light utok\n";
+    cout << "2) Heavy utok\n";
+    cout << "3) Vyvolani starych bohu (-1 mana)\n";
+    cout << "4) Lecka\n";
+    cout << "Volba: ";
+
+    int volba;
+    cin >> volba;
+
+    switch(volba) {
+
+    case 1:
+
+        cout << "\nZautocil jsi lehkym utokem.\n";
+        kanec_zivoty -= 1;
+        if (rand() % 100 < 50) {
+            hrac.zivoty -= 1;
+            cout << "Kanec te zasahl klem. (-1 HP)\n";
+        }
+        else {
+            cout << "Uhnul jsi jeho utoku.\n";
+        }
+        break;
+
+    case 2:
+        cout << "\nRozbehl ses do silneho utoku.\n";
+        kanec_zivoty -= 2;
+        hrac.zivoty -= 2;
+        cout << "Kanec te pri stretu zranil. (-2 HP)\n";
+
+        break;
+
+    case 3:
+        if (hrac.mana >= 1) {
+            hrac.mana--;
+            cout << "\nZacal jsi vyvolavat stare bohy.\n";
+            kanec_zivoty = 0;
+            cout << "Korene roztrhaly kance na kusy.\n";
+        }
+        else {
+            cout << "Nemas dost many.\n";
+        }
+
+        break;
+
+    case 4: {
+
+        if (leckaPouzita) {
+            cout << "Uz jsi jednu lecku pripravil.\n";
+            break;
+        }
+        leckaPouzita = true;
+        cout << "\nPokousel ses pripravit lecku...\n";
+        int sance = 0;
+        if (hrac.trida == "Lovec") {
+            sance = 60;
+        }
+        else if (hrac.trida == "Nizsi slechtic") {
+            sance = 40;
+        }
+        else if (hrac.trida == "Rybar") {
+            sance = 15;
+        }
+        int hod = rand() % 100;
+        if (hod < sance) {
+            cout << "Lecka vysla!\n";
+            kanec_zivoty -= 3;
+            cout << "Kanec se chytil do pasti. (-3 HP)\n";
+        }
+        else {
+            cout << "Lecka selhala!\n";
+            hrac.zivoty -= 1;
+            cout << "Kanec te zasahl klem. (-1 HP)\n";
+        }
+        break;
+    }
+    default:
+        cout << "Neplatna volba.\n";
+        break;
+    }
+
+if (kanec_zivoty <= 0) {
+    kanecNazivu = false;
+    cout << "\n===== KANEC PADL =====\n";
+    cout << "Po dlouhem boji jsi skolil kance.\n";
+    cout << "Vyrezal jsi jeho kly jako trofej.\n";
+    hrac.cennosti += 2;
+    cout << "(+2 cennosti)\n";
+    hrac.uroven += 1;
+    cout << "(+1 uroven)\n";
+    hrac.zkusenosti += 3;
+    cout << "(+3 zkusenosti)\n";
+    hrac.zivoty = hrac.maxZivoty;
+    cout << "Najedl ses a odpocinul sis. Zivoty obnoveny.\n";
+    hrac.utok = puvodniUtok;
+    cout << "Tvoje sila se vratila do normalu.\n";
+}
+
+if (hrac.zivoty <= 0) {
+
+    cout << "\nKanec te rozdupal.\n";
+    cout << "Konec hry.\n";
+
+    return;
+    }
+}
         }
        };
 
 int main() {
+    srand(time(0));
     Hra hra;
     hra.start();
-    srand(time(0));
+
 
     return 0;
 }
