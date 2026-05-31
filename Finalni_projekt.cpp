@@ -724,6 +724,47 @@ if (hrac.zivoty <= 0) {
     return;
     }
 }
+   cout<<"Konecne ulehnes ke spanku ted uz s plnym zaludkem"<<endl;
+   cout<<"V noci se neco zacne plyzit kolem tebe....."<<endl;
+   cout<<"Probudis se uprosted noci a stoji nad tebou podivny muz"<<endl;
+   cout<<"Predstavi se jako Cyclechon a zacne se omlouvat za naruseni"<<endl;
+   cout<<"Pry mu byla zima a jen se chtel ohrat u tveho ohne"<<endl;
+   cout<<"Veris mu a nechas ho prisednout k ohni?"<<endl;
+   potvrzeno = false;
+    while (!potvrzeno) {
+
+    cout << "1) Ano nechas ho prisednout.\n";
+    cout << "2) Ne odmitnes ho.\n";
+    cout << "Volba: ";
+    int volba;
+    cin >> volba;
+    switch (volba){
+case 1:
+cout << "TY: Muzes si sednout ale jestli mas spatny umysl...\n"
+       "Cyclechon si sedne k ohni ruce se mu tresou zimou\n"
+         "CYCLECHON: Prisaham ze neprichazim se zlym umyslem\n"
+           "Z nebe se zvedne prudky vitr hejno havranu se sleti kolem ohne\n"
+        "Havrani zacnou krakoret jako sileni\n"
+       "Z hejna se zformuje temna silueta a dopadne na zem\n"
+        "Pred tebou stoji Coldhands ve sve havrani podobe\n"
+        "COLDHANDS: LHAR! LHAR! LHAR!\n";
+potvrzeno = true;
+break;
+case 2:
+    cout << "TY: Ne Ohen je muj a ja te neznam jdi pryc\n"
+            "Cyclechon sklopi hlavu a pomalu odchazi\n"
+            "Po par krocich se Cyclechon zhrouti do snehu\n"
+            "Chvili vahas ale nakonec ho dotahnes zpet k ohni\n"
+            "Je ledovy jako smrt\n"
+            "Ozve se hlasite krakani\n"
+            "Z temnoty se snese hejno havranu a obkrouzi vas\n"
+            "Z hejna se vynori havrani postava Coldhandse\n"
+            "COLDHANDS: LHAR! LHAR! LHAR!\n";
+potvrzeno = true;
+break;
+    }
+}
+cout<<"Zmrznes v soku behem toho co jeho mesec z bylinkama zacne mit podivne ucinky"<<endl;
         }
        };
 
