@@ -782,6 +782,86 @@ break;
     cout<<"Z krovi vystoupi dva hladovi vlci."<<endl;
     cout<<"V momentu okamziku jako kdyby se vase svety propojily s Ceclychonem"<<endl;
 
+int vlk1 = 4;
+int vlk2 = 4;
+leckaPouzita = false;
+while((vlk1 > 0 || vlk2 > 0) && hrac.zivoty > 0){
+
+        cout<<"\n===== DVA VLCI ====="<<endl;
+        cout<<"Vlk 1 HP: "<<vlk1<<endl;
+        cout<<"Vlk 2 HP: "<<vlk2<<endl;
+        hrac.zobrazStatistiky();
+        cout<<"1) Utoc na prvniho vlka"<<endl;
+        cout<<"2) Utoc na druheho vlka"<<endl;
+        cout<<"3) Vyvolani starych bohu (-1 mana)"<<endl;
+        int volba;
+        cin>>volba;
+        switch(volba){
+        case 1:
+        if(vlk1 > 0){
+        vlk1 -= hrac.utok;
+        cout<<"Zasahl jsi prvniho vlka."<<endl;
+        }
+        break;
+
+        case 2:
+        if(vlk2 > 0){
+        vlk2 -= hrac.utok;
+        cout<<"Zasahl jsi druheho vlka."<<endl;
+        }
+        break;
+
+        case 3:
+        if(hrac.mana >= 1){
+        hrac.mana--;
+        vlk1 -= 2;
+        vlk2 -= 2;
+        cout<<"Koreny prorazily zem pod vlky."<<endl;
+        }
+        else{
+        cout<<"Nemas dostatek many."<<endl;
+        }
+        break;
+
+        case 4: {
+        if (leckaPouzita) {
+        cout << "Uz jsi jednu lecku pripravil.\n";
+        break;
+
+        }
+        leckaPouzita = true;
+        cout << "\nPokousel ses pripravit lecku...\n";
+        int sance = 0;
+        if (hrac.trida == "Lovec") {
+        sance = 60;
+        }
+        else if (hrac.trida == "Nizsi slechtic") {
+        sance = 40;
+        }
+        else if (hrac.trida == "Rybar") {
+        sance = 15;
+        }
+        int hod = rand() % 100;
+        if (hod < sance) {
+        cout << "Lecka vysla!\n";
+        vlk1 -= 4;
+        vlk2 -=4;
+        cout << "Vlci se chytil do pasti. (-3 HP)\n";
+        }
+        else {
+        cout << "Lecka selhala!\n";
+        hrac.zivoty -= 1;
+        cout << "Vlk te pokousal. (-1 HP)\n";
+        }
+        break;
+    }
+    default:
+    cout << "Neplatna volba.\n";
+    break;
+    }
+        }
+
+
         }
        };
 
