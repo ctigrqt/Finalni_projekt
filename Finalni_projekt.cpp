@@ -764,7 +764,24 @@ potvrzeno = true;
 break;
     }
 }
-cout<<"Zmrznes v soku behem toho co jeho mesec z bylinkama zacne mit podivne ucinky"<<endl;
+    cout<<"Zmrznes v soku behem toho co jeho mesec z bylinkama zacne mit podivne ucinky"<<endl;
+
+    cout<<"Cyclechon se chyti za hlavu a padne na kolena."<<endl;
+    cout<<"Jeho ruce se nekontrolovatelne tresou."<<endl;
+    cout<<"COLDHANDS: Vidis? Rikal jsem ti, ze je to lhar."<<endl;
+    cout<<"CYCLECHON: Ja nelzu..."<<endl;
+    cout<<"Coldhands se na neho dlouho diva."<<endl;
+    cout<<"Potom se otoci k tobe, ktery je na hranici vnimani."<<endl;
+    cout<<"Hejno havranu se rozleti do noci."<<endl;
+    cout<<"Coldhands zmizi."<<endl;
+    cout<<"Nastane trapne ticho."<<endl;
+    cout<<"Cyclechon se pomalu zvedne."<<endl;
+    cout<<"CYCLECHON: Takze..."<<endl;
+    cout<<"Bheme toho co se nemuzes pohybovat, Ceclychon krouzi nad tebou."<<endl;
+    cout<<"Nahle uslysis vrceni."<<endl;
+    cout<<"Z krovi vystoupi dva hladovi vlci."<<endl;
+    cout<<"V momentu okamziku jako kdyby se vase svety propojily s Ceclychonem"<<endl;
+
         }
        };
 
