@@ -1044,6 +1044,107 @@ cout<<"Dalsi den vyrazite zpatjy na cestu k pristavnimu mestecku"<<endl;
     cout<<"KUPEC: Plujeme stejnym smerem."<<endl;
     cout<<"KUPEC: Muzete se pridat."<<endl;
     }
+    cout<<"Nahle uslysis znamy hlas."<<endl;
+
+    cout<<"ZEBRAK: TO JSOU ONI!"<<endl;
+
+    cout<<"Otocis se."<<endl;
+
+    cout<<"Oba zebraci se vratili."<<endl;
+
+    cout<<"Tentokrat s dalsim chlapem."<<endl;
+
+    cout<<"Vypada mnohem nebezpecneji."<<endl;
+
+    int zebrak1hp = 1;
+    int zebrak2hp = 1;
+    int rvac = 4;
+
+    while((zebrak1hp > 0 || zebrak2hp > 0 || rvac > 0) && hrac.zivoty > 0){
+
+    cout<<"\n===== PREPADENI V PRISTAVU ====="<<endl;
+
+    cout<<"Zebrak 1 HP: "<<zebrak1hp<<endl;
+    cout<<"Zebrak 2 HP: "<<zebrak2hp<<endl;
+    cout<<"Rvac HP: "<<rvac<<endl;
+
+    hrac.zobrazStatistiky();
+
+    cout<<"1) Utok na zebraka 1"<<endl;
+    cout<<"2) Utok na zebraka 2"<<endl;
+    cout<<"3) Utok na rvace"<<endl;
+    int volba;
+    cin>>volba;
+
+    switch(volba){
+
+    case 1:
+    if(zebrak1hp > 0){
+    zebrak1hp -= hrac.utok;
+    cout<<"Zasahl jsi prvniho zebraka."<<endl;
+    }
+    break;
+
+    case 2:
+    if(zebrak2hp > 0){
+    zebrak2hp -= hrac.utok;
+    cout<<"Zasahl jsi druheho zebraka."<<endl;
+    }
+    break;
+
+    case 3:
+    if(rvac > 0){
+    rvac -= hrac.utok;
+    cout<<"Zasahl jsi rvace."<<endl;
+    }
+    break;
+    }
+    if(zebrak1hp > 0){
+    hrac.zivoty--;
+    cout<<"Zebrak te uhodil kamenem."<<endl;
+    }
+    if(zebrak2hp > 0){
+    hrac.zivoty--;
+    cout<<"Zebrak te kopl do nohy."<<endl;
+    }
+    if(rvac > 0){
+    hrac.zivoty -= 2;
+    cout<<"Rvac te zasahl pestmi."<<endl;
+
+    }
+    }
+
+    if(hrac.zivoty <= 0){
+    cout<<"Svalis se na zem."<<endl;
+    cout<<"Rvac se zasmal."<<endl;
+    cout<<"RVAC: Myslel jsem ze vydrzis dele."<<endl;
+    cout<<"Zebraci ti prohledaji kapsy."<<endl;
+    cout<<"ZEBRAK: Ma u sebe penize!"<<endl;
+    cout<<"Prisels o vsechno zlato."<<endl;
+    hrac.zlato = 0;
+    cout<<"Cyclechon prudce odstrci rvace."<<endl;
+    cout<<"CYCLECHON: VSTAVEJ!"<<endl;
+    cout<<"Popadne te za rameno a odtahne pryc."<<endl;
+    hrac.zivoty = 1;
+    cout<<"Zbyl ti posledni zivot."<<endl;
+    }
+    else{
+    cout<<"Rvac padne na kolena."<<endl;
+    cout<<"ZEBRAK: UTEKTE!"<<endl;
+    cout<<"Oba zebraci utecou do ulic."<<endl;
+    cout<<"Cyclechon se usmeje."<<endl;
+    cout<<"CYCLECHON: To byla zabava."<<endl;
+    }
+    cout<<"V tu chvili nekdo zakrici."<<endl;
+    cout<<"STRAZNY: TAM JSOU!"<<endl;
+    cout<<"Po molu k vam bezi ozbrojene straze."<<endl;
+    cout<<"RYCHLE!"<<endl;
+    cout<<"Rozbehnete se smerem k lodim."<<endl;
+    cout<<"Cyclechon odstrci jednoho strazneho do vody."<<endl;
+    cout<<"Preskocis bedny a dopadnes na palubu obchodni lodi."<<endl;
+    cout<<"Lod se zacne vzdalovat od brehu."<<endl;
+    cout<<"Straze po vas krici z mola."<<endl;
+    cout<<"Ale kupec si niceho nevsima."<<endl;
 
             }
            };
