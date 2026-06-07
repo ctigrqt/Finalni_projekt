@@ -859,7 +859,26 @@ while((vlk1 > 0 || vlk2 > 0) && hrac.zivoty > 0){
     cout << "Neplatna volba.\n";
     break;
     }
-        }
+
+
+if(vlk1 > 0){
+hrac.zivoty--;
+cout<<"Prvni vlk te kousl. (-1 HP)"<<endl;
+}
+if(vlk2 > 0){
+hrac.zivoty--;
+cout<<"Druhy vlk te kousl. (-1 HP)"<<endl;
+}
+}
+if(hrac.zivoty <= 0){
+cout<<"Vlci te roztrhali."<<endl;
+return;
+}
+cout<<"Posledni vlk padl mrtvy."<<endl;
+hrac.zkusenosti += 2;
+hrac.zlato += 2;
+cout<<"(+2 zkusenosti)"<<endl;
+cout<<"(+2 zlata)"<<endl;
 
 
         }
