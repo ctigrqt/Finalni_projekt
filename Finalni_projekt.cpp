@@ -794,6 +794,7 @@ while((vlk1 > 0 || vlk2 > 0) && hrac.zivoty > 0){
         cout<<"1) Utoc na prvniho vlka"<<endl;
         cout<<"2) Utoc na druheho vlka"<<endl;
         cout<<"3) Vyvolani starych bohu (-1 mana)"<<endl;
+        cout<<"4) Lecka"<<endl;
         int volba;
         cin>>volba;
         switch(volba){
@@ -947,8 +948,105 @@ cout<<"Dalsi den vyrazite zpatjy na cestu k pristavnimu mestecku"<<endl;
     break;
     }
     }
-        }
-       };
+    hrac.zobrazStatistiky();
+    cout<<"CECLYCHON: Tady jses ,ze ja te hledal jak blbec.\n"
+    "CECLYCHON: Potrebuju si zaridit par veci, setkame se v pristavu.\n"
+    "...Po tve ceste k pristavu jsi zabloudil do temne ulicky...\n"
+    "Vyskoci dva bezdomovci jeden z nich ma rezavy nuz a ten druhy smradlavy korbel\n";
+
+    int zebrak1 = 2;
+    int zebrak2 = 3;
+
+    while((zebrak1 > 0 || zebrak2 > 0) && hrac.zivoty > 0){
+    cout<<"\n===== ZEBRACI ====="<<endl;
+    cout<<"Zebrak 1 HP: "<<zebrak1<<endl;
+    cout<<"Zebrak 2 HP: "<<zebrak2<<endl;
+    hrac.zobrazStatistiky();
+    cout<<"1) Utok na prvniho zebraka"<<endl;
+    cout<<"2) Utok na druheho zebraka"<<endl;
+    cout<<"3) Vyvolani starych bohu"<<endl;
+
+    int volba;
+    cin>>volba;
+    switch(volba){
+
+    case 1:
+    if(zebrak1 > 0){
+    zebrak1 -= hrac.utok;
+    cout<<"Zasahl jsi prvniho zebraka."<<endl;
+    }
+    break;
+
+    case 2:
+    if(zebrak2 > 0){
+    zebrak2 -= hrac.utok;
+    cout<<"Zasahl jsi druheho zebraka."<<endl;
+    }
+    break;
+
+    case 3:
+    if(hrac.mana >= 1){
+    hrac.mana--;
+    zebrak1 -= 2;
+    zebrak2 -= 2;
+    cout<<"Temne koreny vyrazily ze zeme."<<endl;
+    }
+    break;
+    }
+    if(zebrak1 > 0){
+    hrac.zivoty--;
+    cout<<"Zebrak te praštil kamenem."<<endl;
+    }
+    if(zebrak2 > 0){
+    hrac.zivoty--;
+    cout<<"Zebrak te rizl nozem."<<endl;
+    }
+    }
+    if(hrac.zivoty <= 0){
+    cout<<"Padl jsi v temne ulicce."<<endl;
+    return;
+    }
+    cout<<"Oba zebraci lezi na zemi v bezvedomi."<<endl;
+    cout<<"Nezabijes je."<<endl;
+    cout<<"Jen jim seberes mechy s mincemi."<<endl;
+    hrac.zlato += 3;
+    hrac.reputace +=2;
+    cout<<"(+3 zlata)"<<endl;
+    cout<<"Po nekolika minutach konecne najdes cestu zpet do pristavu."<<endl;
+    cout<<"Cyclechon uz na tebe ceka."<<endl;
+    cout<<"CECLYCHON: Musime si najir prevoz"<<endl;
+
+    if(hrac.trida == "Rybar"){
+    cout<<"Zastavis se pred rybarskymi lodemi."<<endl;
+    cout<<"Jeden z rybaru si te vsimne."<<endl;
+    cout<<"RYBAR: Ty jses rybarskej?"<<endl;
+    cout<<"TY: Ale jo"<<endl;
+    cout<<"RYBAR: Potrebujete prevoz?"<<endl;
+    cout<<"CYCLECHON: Presne tak."<<endl;
+    cout<<"RYBAR: Tak nastupte."<<endl;
+    }
+    if(hrac.trida == "Nizsi slechtic"){
+
+    cout<<"K vam pristoupi mladsi slechtic."<<endl;
+    cout<<"SLECHTIC: Promin..."<<endl;
+    cout<<"SLECHTIC: Nejses ty nejstarsi syn jednoho z panu ze skane?"<<endl;
+    cout<<"Prikyvnes."<<endl;
+    cout<<"SLECHTIC: Pamatuji si tveho otce."<<endl;
+    cout<<"SLECHTIC: Bude mi cti vas prevezt."<<endl;
+    }
+    if(hrac.trida == "Lovec"){
+
+    cout<<"Skupina kupcu vyklada kuze a parohy."<<endl;
+    cout<<"Jeden z nich si te vsimne."<<endl;
+    cout<<"KUPEC: Se nejak zajimas."<<endl;
+    cout<<"KUPEC: Lovec?"<<endl;
+    cout<<"Prikyvnes."<<endl;
+    cout<<"KUPEC: Plujeme stejnym smerem."<<endl;
+    cout<<"KUPEC: Muzete se pridat."<<endl;
+    }
+
+            }
+           };
 
 int main() {
     srand(time(0));
