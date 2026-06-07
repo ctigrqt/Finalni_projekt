@@ -876,11 +876,65 @@ return;
 }
 cout<<"Posledni vlk padl mrtvy."<<endl;
 hrac.zkusenosti += 2;
-hrac.zlato += 2;
+hrac.cennosti += 2;
 cout<<"(+2 zkusenosti)"<<endl;
-cout<<"(+2 zlata)"<<endl;
+cout<<"(+2 cennosti)"<<endl;
+cout<<"CECLYCHON: Tak uz mi veris ze nemam s tebou zadne spatne umysly"<<endl;
+cout<<"Dalsi den vyrazite zpatjy na cestu k pristavnimu mestecku"<<endl;
+
+    bool vesnice = true;
+
+    while(vesnice){
+
+    cout<<"\n===== PRISTAVNI MESTECKO ====="<<endl;
+    cout<<"1) Odpocinout (Doplneni zivotu)"<<endl;
+    cout<<"2) Zvysit utok (3 zlata)"<<endl;
+    cout<<"3) Zvysit max zivoty (3 zlata)"<<endl;
+    cout<<"4) Odejit"<<endl;
+    int volba;
+    cin>>volba;
+    switch(volba){
+    case 1:
+    hrac.zivoty = hrac.maxZivoty;
+    cout<<"Dobre sis odpocinul."<<endl;
+    break;
 
 
+
+    case 2:
+    if(hrac.zlato >= 3){
+    hrac.zlato -= 3;
+    hrac.utok+=2;
+
+    cout<<"(+2 utok)"<<endl;
+     break;
+    }
+    else{
+    cout<<"Nemas dost zlata."<<endl;
+     break;
+    }
+
+
+    case 3:
+    if(hrac.zlato >= 3){
+    hrac.zlato -= 3;
+    hrac.zivoty = hrac.maxZivoty;
+    hrac.maxZivoty+=2;
+
+      cout<<"(+2 max HP)"<<endl;
+       break;
+    }
+    else{
+    cout<<"Nemas dost zlata."<<endl;
+     break;
+    }
+
+
+    case 4:
+    vesnice = false;
+    break;
+    }
+    }
         }
        };
 
