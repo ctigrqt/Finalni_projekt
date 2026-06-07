@@ -599,7 +599,7 @@ cout<<"KAPITOPLA 2 - VLK V ROUSE BERANCIM"<<endl;
 cout<<" "<<endl;
 cout<<"Po nekolika tezkych dnech cestovani si konecne muzes odpocinout.\n"
 "Ale mas hlad a v blizkosti slysis kance.\n"
-"Rozhodl ses odpocinout a regenerovat sily\.n";
+"Rozhodl ses odpocinout a regenerovat sily.\n";
 hrac.zivoty = hrac.maxZivoty;
 cout << "Po odpocinku ses citil znovu plny sil.\n";
 cout<<"kanci zvuky se zvetsuji a zvetsuji nez se kanec vynori z krovi"<<endl;
@@ -890,7 +890,8 @@ cout<<"Dalsi den vyrazite zpatjy na cestu k pristavnimu mestecku"<<endl;
     cout<<"1) Odpocinout (Doplneni zivotu)"<<endl;
     cout<<"2) Zvysit utok (3 zlata)"<<endl;
     cout<<"3) Zvysit max zivoty (3 zlata)"<<endl;
-    cout<<"4) Odejit"<<endl;
+    cout<<"4) Falesna pujcka penez"<<endl;
+    cout<<"5) Odejit"<<endl;
     int volba;
     cin>>volba;
     switch(volba){
@@ -930,7 +931,18 @@ cout<<"Dalsi den vyrazite zpatjy na cestu k pristavnimu mestecku"<<endl;
     }
 
 
+
     case 4:
+    if (hrac.reputace>=1){
+    hrac.zlato ++;
+    hrac.reputace --;
+    cout<<"ZEBRAK: mas vysokou reputaci zarucis se za me u lichvare a dam ti zlatak"<<endl;
+    break;
+    }else{
+    cout<<"ZEBRAK: I ja mam tady vice respektu nez ty zmiz mi z oci"<<endl;
+    break;
+    }
+    case 5:
     vesnice = false;
     break;
     }
