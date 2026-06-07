@@ -19,10 +19,11 @@ public:
     int utok;
     int cennosti;
     int reputace;
-
+    int maxMana;
     Hrac() {
         zivoty = 0;
         maxZivoty = 0;
+        maxMana = 1;
         mana = 0;
         zlato = 0;
         uroven = 1;
@@ -434,7 +435,7 @@ cout<<"Prosim nasleduj me.\n"
     cout<<"Havran na jednou zmizi a zpoza rohu se vynori vysoky postarsi muz.\n"
     "Ma velmi bledou plet a cerne umrzle ruce\n";
 
-
+if (hrac.zivoty < 0) hrac.zivoty = 0;
 
 
         potvrzeno = false;
@@ -488,7 +489,7 @@ cout<<"GREENSEER: Neboj se "<<hrac.jmeno; cout<<" i ja se stydim za svuj stav.\n
 
 potvrzeno = false;
 while (!potvrzeno) {
-if (hrac.mana >= 0){
+if (hrac.mana == 0){
     int volba;
     cout<<"Vidim, ze nemas zadnou naklonost bohu, ze jsi bez many"<<endl;
     cout<<"Za tvoje je zkusenosti jest manu muzu vymenit."<<endl;
@@ -552,7 +553,7 @@ while (!potvrzeno) {
 
     case 2:
     if (hrac.cennosti >= 1) {
-    hrac.cennosti -= 1;
+    hrac.cennosti -= 2;
     hrac.utok += 1;
 
     cout << "Greenseer ti pozehnal silou korenu. (+1 utok)\n";
@@ -764,6 +765,7 @@ potvrzeno = true;
 break;
     }
 }
+if (hrac.zivoty < 0) hrac.zivoty = 0;
     cout<<"Zmrznes v soku behem toho co jeho mesec z bylinkama zacne mit podivne ucinky"<<endl;
 
     cout<<"Cyclechon se chyti za hlavu a padne na kolena."<<endl;
@@ -860,7 +862,7 @@ while((vlk1 > 0 || vlk2 > 0) && hrac.zivoty > 0){
     cout << "Neplatna volba.\n";
     break;
     }
-
+if (hrac.zivoty < 0) hrac.zivoty = 0;
 
 if(vlk1 > 0){
 hrac.zivoty--;
@@ -872,8 +874,7 @@ cout<<"Druhy vlk te kousl. (-1 HP)"<<endl;
 }
 }
 if(hrac.zivoty <= 0){
-cout<<"Vlci te roztrhali."<<endl;
-return;
+cout<<"Vlci ho vazne pokousali, ale Ceclychon vytahne pytlik s bylinkami, co je omraci."<<endl;
 }
 cout<<"Posledni vlk padl mrtvy."<<endl;
 hrac.zkusenosti += 2;
@@ -882,7 +883,7 @@ cout<<"(+2 zkusenosti)"<<endl;
 cout<<"(+2 cennosti)"<<endl;
 cout<<"CECLYCHON: Tak uz mi veris ze nemam s tebou zadne spatne umysly"<<endl;
 cout<<"Dalsi den vyrazite zpatjy na cestu k pristavnimu mestecku"<<endl;
-
+if (hrac.zivoty < 0) hrac.zivoty = 0;
     bool vesnice = true;
 
     while(vesnice){
@@ -901,8 +902,6 @@ cout<<"Dalsi den vyrazite zpatjy na cestu k pristavnimu mestecku"<<endl;
     cout<<"Dobre sis odpocinul."<<endl;
     break;
 
-
-
     case 2:
     if(hrac.zlato >= 3){
     hrac.zlato -= 3;
@@ -915,8 +914,6 @@ cout<<"Dalsi den vyrazite zpatjy na cestu k pristavnimu mestecku"<<endl;
     cout<<"Nemas dost zlata."<<endl;
      break;
     }
-
-
     case 3:
     if(hrac.zlato >= 3){
     hrac.zlato -= 3;
@@ -930,8 +927,6 @@ cout<<"Dalsi den vyrazite zpatjy na cestu k pristavnimu mestecku"<<endl;
     cout<<"Nemas dost zlata."<<endl;
      break;
     }
-
-
 
     case 4:
     if (hrac.reputace>=1){
@@ -1045,15 +1040,10 @@ cout<<"Dalsi den vyrazite zpatjy na cestu k pristavnimu mestecku"<<endl;
     cout<<"KUPEC: Muzete se pridat."<<endl;
     }
     cout<<"Nahle uslysis znamy hlas."<<endl;
-
     cout<<"ZEBRAK: TO JSOU ONI!"<<endl;
-
     cout<<"Otocis se."<<endl;
-
     cout<<"Oba zebraci se vratili."<<endl;
-
     cout<<"Tentokrat s dalsim chlapem."<<endl;
-
     cout<<"Vypada mnohem nebezpecneji."<<endl;
 
     int zebrak1hp = 1;
@@ -1146,9 +1136,518 @@ cout<<"Dalsi den vyrazite zpatjy na cestu k pristavnimu mestecku"<<endl;
     cout<<"Straze po vas krici z mola."<<endl;
     cout<<"Ale kupec si niceho nevsima."<<endl;
 
-            }
-           };
 
+    cout<<"Po nekolika dnech na mori ti odpocinek udelal dobre."<<endl;
+    hrac.zivoty = hrac.maxZivoty;
+    hrac.mana = hrac.maxMana;
+    cout<<"Tvoje sily byly plne obnoveny."<<endl;
+    cout<<"Pred vami se rozklada pristavni osada na Skagosu."<<endl;
+    cout<<"Je mnohem vetsi nez vesnice na Skanu."<<endl;
+
+    bool skagosVesnice = true;
+    while(skagosVesnice){
+
+    cout<<"\n===== SKAGOS ====="<<endl;
+
+    cout<<"1) Falesna pujcka "<<endl;
+    cout<<"2) Zvysit utok (8 zlata)"<<endl;
+    cout<<"3) Zvysit max zivoty (8 zlata)"<<endl;
+    cout<<"4) Zvysit max manu (8 zlata)"<<endl;
+    cout<<"5) Odejit"<<endl;
+
+    int volba;
+    cin>>volba;
+
+    switch(volba){
+
+    case 1:
+
+     if (hrac.reputace>=1){
+    hrac.zlato ++;
+    hrac.reputace --;
+    cout<<"ZEBRAK: mas vysokou reputaci zarucis se za me u lichvare a dam ti zlatak"<<endl;
+    break;
+    }else{
+    cout<<"ZEBRAK: I ja mam tady vice respektu nez ty zmiz mi z oci"<<endl;
+    break;
+    }
+    case 2:
+    if(hrac.zlato >= 8){
+    hrac.zlato -= 8;
+    hrac.utok++;
+    cout<<"(+1 utok)"<<endl;
+    }
+    break;
+
+    case 3:
+    if(hrac.zlato >= 8){
+    hrac.zlato -= 8;
+    hrac.maxZivoty += 2;
+    hrac.zivoty = hrac.maxZivoty;
+    cout<<"(+2 max HP)"<<endl;
+    }
+    break;
+
+    case 4:
+    if(hrac.zlato >= 8){
+    hrac.zlato -= 8;
+    hrac.maxMana += 2;
+    hrac.mana = hrac.maxMana;
+    cout<<"(+2 max mana)"<<endl;
+    }
+    break;
+
+    case 5:
+    skagosVesnice = false;
+    break;
+    }
+    }
+    cout<<"Po nekolika hodinach hledani dorazis k mistni tvrzi."<<endl;
+    cout<<"Pred branou stoji ozbrojeni strazni."<<endl;
+    cout<<"Pozadas o audienci u mistniho pana."<<endl;
+    cout<<"STRAZNY: Ne."<<endl;
+    cout<<"Zkusis to znovu."<<endl;
+    cout<<"STRAZNY: Rekl jsem ne."<<endl;
+    cout<<"Cyclechon se zacina viditelne nudit."<<endl;
+    cout<<"Po chvili vystoupi jeden ze straznych."<<endl;
+    cout<<"STRAZNY: Reknu ti co."<<endl;
+    cout<<"STRAZNY: Kdyz me porazis v souboji, pustim te dovnitr."<<endl;
+    int strazny = 8;
+if (hrac.zivoty < 0) hrac.zivoty = 0;
+    while(strazny > 0 && hrac.zivoty > 0){
+
+    cout<<"\n===== STRAZNY ====="<<endl;
+    cout<<"HP Strazneho: "<<strazny<<endl;
+    hrac.zobrazStatistiky();
+    cout<<"1) Utok"<<endl;
+    cout<<"2) Vyvolani starych bohu"<<endl;
+    int volba;
+    cin>>volba;
+    switch(volba){
+    case 1:
+    strazny -= hrac.utok;
+    cout<<"Zasahl jsi strazneho."<<endl;
+    break;
+    case 2:
+    if(hrac.mana >= 1){
+    hrac.mana--;
+    strazny -= 2;
+    cout<<"Temna energie zasahla strazneho."<<endl;
+    }
+    break;
+    }
+    if(strazny > 0){
+    hrac.zivoty--;
+    cout<<"Strazny te zasahl."<<endl;
+    }
+    }
+    if(hrac.zivoty <= 0){
+    cout<<"Strazny te porazil."<<endl;
+
+    }
+    else{
+    cout<<"Strazny padl na kolena."<<endl;
+    cout<<"STRAZNY: Dobre..."<<endl;
+    cout<<"STRAZNY: Ale jeste jedna vec."<<endl;
+
+    if(hrac.zlato > 0){
+    cout<<"STRAZNY: Vstupni poplatek."<<endl;
+    cout<<"Strazny ti sebral vsechny penize."<<endl;
+    hrac.zlato = 0;
+    }
+    cout<<"STRAZNY: A ted zmiz."<<endl;
+    }
+    cout<<"Cyclechon nevericne zira."<<endl;
+    cout<<"CYCLECHON: To si delas srandu?"<<endl;
+    cout<<"STRAZNY: Mas taky nejaky problem?"<<endl;
+    cout<<"Cyclechon se usmeje."<<endl;
+    cout<<"To neni dobry znameni."<<endl;
+    cout<<"CYCLECHON: Ano."<<endl;
+    cout<<"CYCLECHON: Mam."<<endl;
+    cout<<"A vzapeti strci strazneho ze schodu."<<endl;
+    cout<<"Druhy strazny okamzite tasí mec."<<endl;
+    cout<<"CYCLECHON: UTEKEJ!"<<endl;
+    cout<<"A sam se rozbehne jinym smerem."<<endl;
+    cout<<"Oba strazni se vrhnou na tebe."<<endl;
+
+    int strazny1 = 7;
+    int strazny2 = 7;
+    while((strazny1 > 0 || strazny2 > 0) && hrac.zivoty > 0){
+
+    cout<<"\n===== STRAZNI TVRZE ====="<<endl;
+
+    cout<<"Strazny 1 HP: "<<strazny1<<endl;
+    cout<<"Strazny 2 HP: "<<strazny2<<endl;
+
+    hrac.zobrazStatistiky();
+
+    cout<<"1) Utok na strazneho 1"<<endl;
+    cout<<"2) Utok na strazneho 2"<<endl;
+    cout<<"3) Vyvolani starych bohu (-1 mana)"<<endl;
+if (hrac.zivoty < 0) hrac.zivoty = 0;
+    int volba;
+    cin>>volba;
+
+    switch(volba){
+    case 1:
+    if(strazny1 > 0){
+    strazny1 -= hrac.utok;
+    cout<<"Zasahl jsi prvniho strazneho."<<endl;
+    }
+    break;
+
+    case 2:
+    if(strazny2 > 0){
+    strazny2 -= hrac.utok;
+    cout<<"Zasahl jsi druheho strazneho."<<endl;
+    }
+    break;
+
+    case 3:
+    if(hrac.mana >= 1){
+    hrac.mana--;
+    strazny1 -= 3;
+    strazny2 -= 3;
+    cout<<"Temne koreny vyrazily z dlazby."<<endl;
+    cout<<"Oba strazni byli zraneni."<<endl;
+    }
+    else{
+    cout<<"Nemas dostatek many."<<endl;
+    }
+    break;
+
+    default:
+    cout<<"Neplatna volba."<<endl;
+    }
+    if(strazny1 > 0){
+    hrac.zivoty -= 2;
+    cout<<"Prvni strazny te zasahl obuskem. (-2 HP)"<<endl;
+    }
+    if(strazny2 > 0){
+    hrac.zivoty -= 2;
+    cout<<"Druhy strazny te zasahl pesti. (-2 HP)"<<endl;
+    }
+    }
+    if(hrac.zivoty <= 0){
+
+    cout<<"Posledni rana te srazi na zem."<<endl;
+    cout<<"Pred ocima se ti zatmi."<<endl;
+    cout<<"STRAZNY: Tenhle uz nevstane."<<endl;
+    cout<<"STRAZNY: Odtahnete ho."<<endl;
+    cout<<"Strazni te odvlecou do spinave postranni ulicky."<<endl;
+    cout<<"A nechaji te tam lezet."<<endl;
+    hrac.zivoty = 1;
+
+    }
+    else{
+
+    cout<<"Posledni strazny padne na zem."<<endl;
+    cout<<"Nemuzes uverit tomu ze jsi vyhral."<<endl;
+    cout<<"Jsi ale tezce zraneny."<<endl;
+    hrac.zkusenosti += 4;
+    cout<<"(+4 zkusenosti)"<<endl;
+    if(hrac.zivoty > 1){
+    hrac.zivoty = 1;
+    }
+    cout<<"Po boji se sotva drzis na nohou."<<endl;
+    }
+      cout<<"Po nekolika minutach uslysis kroky."<<endl;
+        cout<<"Ze stinu se vynori Cyclechon."<<endl;
+        cout<<"Ma monokl."<<endl;
+        cout<<"Kazdy kus obleceni ma roztrzeny."<<endl;
+        cout<<"Telo cele od modrin."<<endl;
+        cout<<"CYCLECHON: Tak tohle nevyslo uplne podle planu."<<endl;
+        cout<<"Sedne si vedle tebe."<<endl;
+        cout<<"CYCLECHON: Promin."<<endl;
+        cout<<"CYCLECHON: Opravdu jsem se snazil pomoct."<<endl;
+        cout<<"Chvili oba mlcite."<<endl;
+        cout<<"Nakonec si povzdechne."<<endl;
+        cout<<"CYCLECHON: Co kdybych si tu audienci vyzadal sam?"<<endl;
+        cout<<"CYCLECHON: Treba budu mit vic stesti."<<endl;
+        cout<<"Nezbyva ti nez souhlasit."<<endl;
+
+        cout<<"Po nekolika hodinach cekani pred tvrzi ti dojde trpelivost."<<endl;
+        cout<<"Cyclechon se stale nevratil."<<endl;
+        cout<<"Nakonec se rozhodnes vratit domu na Skane."<<endl;
+
+        cout<<"Po dlouhem hledani najdes stareho rybare."<<endl;
+        cout<<"Souhlasi ze te za maly poplatek odveze."<<endl;
+
+        cout<<"Nastoupis na malou rybarskou lod."<<endl;
+
+        hrac.zivoty = hrac.maxZivoty;
+        hrac.mana = hrac.maxMana;
+
+        cout<<"Behem plavby si odpocines."<<endl;
+        cout<<"Tvoje sily byly plne obnoveny."<<endl;
+
+        cout<<"Druhy den rano se z vody vynori tri tuleni."<<endl;
+        cout<<"Jsou hladovi a vrhnou se na sitì."<<endl;
+
+int tulen1 = 2;
+int tulen2 = 2;
+int tulen3 = 2;
+if (hrac.zivoty < 0) hrac.zivoty = 0;
+while((tulen1 > 0 || tulen2 > 0 || tulen3 > 0) && hrac.zivoty > 0){
+
+    cout<<"\n===== TULENI ====="<<endl;
+
+    cout<<"Tulen 1 HP: "<<tulen1<<endl;
+    cout<<"Tulen 2 HP: "<<tulen2<<endl;
+    cout<<"Tulen 3 HP: "<<tulen3<<endl;
+
+    hrac.zobrazStatistiky();
+
+    cout<<"1) Utok na tulene 1"<<endl;
+    cout<<"2) Utok na tulene 2"<<endl;
+    cout<<"3) Utok na tulene 3"<<endl;
+
+    int volba;
+    cin>>volba;
+
+    switch(volba){
+    case 1:
+    if(tulen1 > 0){
+    tulen1 -= hrac.utok;
+    }
+    break;
+
+    case 2:
+    if(tulen2 > 0){
+    tulen2 -= hrac.utok;
+    }
+    break;
+
+    case 3:
+    if(tulen3 > 0){
+    tulen3 -= hrac.utok;
+    }
+    break;
+
+    }
+    if(tulen1 > 0){
+    hrac.zivoty--;
+    }
+    if(tulen2 > 0){
+    hrac.zivoty--;
+    }
+    if(tulen3 > 0){
+    hrac.zivoty--;
+    }
+    }
+
+        if(hrac.zivoty <= 0){
+
+        cout<<"RYBAR: Co se do toho pletes?!"<<endl;
+        cout<<"RYBAR: Malem jsi nas vsechny zabil!"<<endl;
+
+        hrac.zivoty = 1;
+
+        }
+        else{
+
+        cout<<"Posledni tulen padl."<<endl;
+        cout<<"Rybare potesilo mnozstvi masa."<<endl;
+
+        hrac.zlato += 5;
+
+        cout<<"(+5 zlata)"<<endl;
+
+}
+
+    cout<<"Te noci jdes spat."<<endl;
+
+    hrac.zivoty = hrac.maxZivoty;
+    hrac.mana = hrac.maxMana;
+
+    cout<<"Po probuzeni jsou tve sily opet obnovene."<<endl;
+    cout<<"K tobe prijdou dva mladi rybari."<<endl;
+    cout<<"Vypadaji nastvane."<<endl;
+    cout<<"RYBAR: Takze to jsi ty..."<<endl;
+    cout<<"RYBAR: Kvuli tobe..."<<endl;
+    cout<<"Nahle se na tebe vrhnou."<<endl;
+
+        int mlady1 = 4;
+        int mlady2 = 4;
+
+while((mlady1 > 0 || mlady2 > 0) && hrac.zivoty > 0){
+
+cout<<"\n===== MLADI RYBARI ====="<<endl;
+
+cout<<"1) Utok na prvniho"<<endl;
+cout<<"2) Utok na druheho"<<endl;
+
+    int volba;
+    cin>>volba;
+    switch(volba){
+
+    case 1:
+    if(mlady1 > 0){
+    mlady1 -= hrac.utok;
+    }
+    break;
+
+    case 2:
+    if(mlady2 > 0){
+    mlady2 -= hrac.utok;
+    }
+    break;
+    }
+    cout<<"Nahle se z vrcholu stezne ozve krik."<<endl;
+    cout<<"RYBAR: Na PALBU!"<<endl;
+    break;
+}
+    cout<<"Vsichni se rozbehnou k okraji lode."<<endl;
+    cout<<"Na obzoru poznas svou rodnou vesnici."<<endl;
+    cout<<"Potom si vsimnes neceho horsiho."<<endl;
+    cout<<"Male lodky najezdniku ze severu."<<endl;
+    cout<<"Miri primo ke Skane."<<endl;
+    cout<<"Nahle se od severu vynori flotila."<<endl;
+    cout<<"Lode ze Skagosu."<<endl;
+    cout<<"V jejich cele stoji Cyclechon."<<endl;
+    cout<<"O okamzik pozdeji narazi do prvni lode najezdniku."<<endl;
+    cout<<"Drevo se rozleti na vsechny strany."<<endl;
+    cout<<"Zbytek najezdniku se da na utek."<<endl;
+    cout<<"RYBAR: Zachranili nas!"<<endl;
+    cout<<"Chces jim podekovat."<<endl;
+    cout<<"Ale kdyz flotila pristane..."<<endl;
+    cout<<"Neco neni v poradku."<<endl;
+    cout<<"Skagosske posadky tasí zbrane."<<endl;
+    cout<<"A vrhnou se na obyvatele vesnice."<<endl;
+    cout<<"Lide krici a domy hori."<<endl;
+    cout<<"Nekteri valecnici trhaji maso z mrtvol a pozirajiho jako zvirata."<<endl;
+    cout<<"Pak ho uvidis."<<endl;
+    cout<<"Cyclechon."<<endl;
+    cout<<"Stoji pred tvym domem."<<endl;
+    cout<<"Tvoje matka kleci na zemi."<<endl;
+    cout<<"Cyclechon pomalu tasí mec."<<endl;
+    cout<<"Bez vahani skocis z lode do vody."<<endl;
+    cout<<"Rozbehnes se pres plaz."<<endl;
+    cout<<"Cyclechon se otoci."<<endl;
+    cout<<"A usmeje se."<<endl;
+    cout<<"===== BOSS FIGHT: CYCLECHON ====="<<endl;
+        int cyclechonHP = 35;
+        int tahBosse = 1;
+        leckaPouzita = false;
+        while(cyclechonHP > 0 && hrac.zivoty > 0){
+            cout << "\n=========================" << endl;
+            cout << "CYCLECHON HP: " << cyclechonHP << endl;
+            cout << "Tah bosse: " << tahBosse << endl;
+            hrac.zobrazStatistiky();
+
+            cout << "\nCo udelas?" << endl;
+            cout << "1) Light utok" << endl;
+            cout << "2) Heavy utok" << endl;
+            cout << "3) Vyvolani starych bohu (-1 mana)" << endl;
+            cout << "4) Lecka" << endl;
+            cout << "Volba: ";
+
+            int volba;
+            cin >> volba;
+
+            switch(volba){
+
+            case 1:
+            cout << "Zautocil jsi." << endl;
+            cyclechonHP -= hrac.utok;
+            if(rand() % 100 < 40){
+            cout << "Cyclechon cast utoku vykryl." << endl;
+            cyclechonHP += hrac.utok / 2;
+            }
+            break;
+
+            case 2:
+            cout << "Rozmachl ses silnym utokem." << endl;
+            cyclechonHP -= hrac.utok * 2;
+            if(rand() % 100 < 35){
+            cout << "Cyclechon provedl protiutok! (-2 HP)" << endl;
+            hrac.zivoty -= 2;
+            }
+            break;
+
+            case 3:
+            if(hrac.mana >= 1){
+            hrac.mana--;
+            cyclechonHP -= 5;
+            cout << "Korene prorazily zem pod Cyclechonem. (-5 HP)" << endl;
+            }else{
+            cout << "Nemas dostatek many." << endl;
+            }
+            break;
+
+            case 4:
+            if(leckaPouzita){
+            cout << "Uz jsi jednu lecku pouzil." << endl;
+            break;
+            }
+            leckaPouzita = true;
+            int sance;
+            if(hrac.trida == "Lovec"){
+            sance = 75;
+            }
+            else if(hrac.trida == "Nizsi slechtic"){
+                    sance = 50;
+            }
+            else{
+            sance = 35;
+                }
+            if(rand() % 100 < sance){
+            cout << "Lecka vysla! Cyclechon se chytil do pasti. (-8 HP)" << endl;
+            cyclechonHP -= 8;
+                }else{
+            cout << "Lecka selhala! (-2 HP)" << endl;
+            hrac.zivoty -= 2;
+            }
+            break;
+
+            default:
+            cout << "Neplatna volba." << endl;
+            continue;
+            }
+            if(cyclechonHP <= 0){
+                break;
+            }
+            if(tahBosse % 2 == 0){
+                cyclechonHP += 2;
+                cout << "Cyclechon si obnovil 2 HP." << endl;
+            }
+            if(tahBosse % 3 == 0){
+                cyclechonHP += 3;
+                cout << "Cyclechon si obnovil 3 HP." << endl;
+            }
+            if(tahBosse % 6 == 0){
+                cout << "Cyclechonuv buben dunel po celem bojisti!" << endl;
+            }
+            int dmg = tahBosse * (rand() % 3 + 1);
+            cout << "Cyclechon te zasahl za "
+                 << dmg
+                 << " poskozeni!" << endl;
+            hrac.zivoty -= dmg;
+            tahBosse++;
+        }
+        if(hrac.zivoty <= 0){
+            cout << "\n===== PROHRA =====" << endl;
+            cout << "Cyclechon te porazil." << endl;
+            cout<<"Hodis svoji matku pred sebe jako lidsky stit a utikas co ti nohy dovoli"<<endl;
+            cout<<"Odplovate za vychodu slunce..."<<endl;
+            cout<<"Posledni co vidis jsou krvave plaze Skane a jak skaggosti kanibalizuji tela tvych spoluobcanu."<<endl;
+            hrac.zkusenosti += 10;
+            hrac.reputace -= 10;
+        }
+        else{
+            cout << "\n===== VITEZSTVI =====" << endl;
+            cout << "Cyclechon padl na kolena." << endl;
+            cout<<"Zachranil jsi svoji matku a zbytek sve rodiny, evakujujete se na rybarskou lodku"<<endl;
+            cout<<"Odplovate za vychodu slunce..."<<endl;
+            cout<<"Posledni co vidis jsou krvave plaze Skane a jak skaggosti kanibalizuji tela tvych spoluobcanu."<<endl;
+
+            hrac.zkusenosti += 10;
+            hrac.reputace += 5;
+            cout << "(+10 zkusenosti)" << endl;
+            cout << "(+5 reputace)" << endl;
+        }
+                }
+};
 int main() {
     srand(time(0));
     Hra hra;
